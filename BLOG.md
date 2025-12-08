@@ -172,11 +172,11 @@ Rode a aplicação com Ctrl + F5 e acesse Acesse http://localhost:8400 para veri
 
 ## 5. Configurando os Perfis de Usuário
 
-O sistema de blog utiliza dois perfis de usuário diferentes dos existentes. O arquivo `util/perfis.py` do projeto original contém os perfis ADMIN, CLIENTE e VENDEDOR. **Você deve SUBSTITUIR os perfis CLIENTE e VENDEDOR por AUTOR e LEITOR**:
+O sistema de blog utiliza dois perfis de usuário diferentes dos existentes. O arquivo `util/perfis.py` do projeto original contém os perfis ADMIN, autor e LEITOR. **Você deve SUBSTITUIR os perfis autor e LEITOR por AUTOR e LEITOR**:
 
 ### Arquivo: `util/perfis.py`
 
-Localize o enum `Perfil` e **substitua** os perfis `CLIENTE` e `VENDEDOR` por `AUTOR` e `LEITOR`. O arquivo deve ficar assim:
+Localize o enum `Perfil` e **substitua** os perfis `autor` e `LEITOR` por `AUTOR` e `LEITOR`. O arquivo deve ficar assim:
 
 ```python
 """
@@ -227,7 +227,7 @@ class Perfil(EnumEntidade):
 
 ### 5.1. Atualizando o UsuarioLogado
 
-O arquivo `model/usuario_logado_model.py` contém o dataclass `UsuarioLogado` que representa o usuário autenticado. Como substituímos os perfis CLIENTE e VENDEDOR, você deve **substituir os métodos `is_cliente()` e `is_vendedor()` por `is_autor()` e `is_leitor()`**:
+O arquivo `model/usuario_logado_model.py` contém o dataclass `UsuarioLogado` que representa o usuário autenticado. Como substituímos os perfis autor e LEITOR, você deve **substituir os métodos `is_autor()` e `is_LEITOR()` por `is_autor()` e `is_leitor()`**:
 
 ```python
     def is_autor(self) -> bool:
@@ -239,7 +239,7 @@ O arquivo `model/usuario_logado_model.py` contém o dataclass `UsuarioLogado` qu
         return self.perfil == Perfil.LEITOR.value
 ```
 
-> **Nota:** O método `is_admin()` deve ser mantido. Remova apenas `is_cliente()` e `is_vendedor()`.
+> **Nota:** O método `is_admin()` deve ser mantido. Remova apenas `is_autor()` e `is_LEITOR()`.
 
 ### 5.3. Substituindo os Perfis Antigos Pelos Novos no Restante do Projeto
 
@@ -247,23 +247,23 @@ Clique na ferramenta de busca do VS Code (Ctrl + Shift + F), ative a sensibilida
 
 | Buscar               | Substituir por      |
 |----------------------|---------------------|
-| `CLIENTE`            | `AUTOR`             |
-| `VENDEDOR`           | `LEITOR`            |
-| `Cliente`            | `Autor`             |
-| `Vendedor`           | `Leitor`            |
-| `cliente`            | `autor`             |
-| `vendedor`           | `leitor`            |
+| `autor`            | `AUTOR`             |
+| `LEITOR`           | `LEITOR`            |
+| `autor`            | `Autor`             |
+| `LEITOR`           | `Leitor`            |
+| `autor`            | `autor`             |
+| `LEITOR`           | `leitor`            |
 
 
 ### 5.4. Acertando Uma Substituição Incorreta
 
-Antes da substituição anterior, havia uma função chamada `obter_identificador_cliente` que foi renomeada para `obter_identificador_autor`. Você deve renomeá-la de volta para `obter_identificador_cliente` para manter a consistência com o restante do projeto. 
+Antes da substituição anterior, havia uma função chamada `obter_identificador_cliente` que foi renomeada para `obter_identificador_cliente`. Você deve renomeá-la de volta para `obter_identificador_cliente` para manter a consistência com o restante do projeto. 
 
 Para fazer a correção, na ferramenta de busca do VS Code (Ctrl + Shift + F), ative a sensibilidade a maiúsculas e minúsculas e faça a seguinte substituição global no projeto (todas as ocorrências):
 
 | Buscar                       | Substituir por                |
 |------------------------------|-------------------------------|
-| `obter_identificador_autor`  | `obter_identificador_cliente` |
+| `obter_identificador_cliente`  | `obter_identificador_cliente` |
 
 Feito isso, o projeto estará pronto para que você possa seguir em frente com o restante desse tutorial.
 

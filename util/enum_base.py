@@ -37,7 +37,7 @@ class EnumEntidade(str, Enum):
         Retorna lista de todos os nomes (keys) do enum.
 
         Returns:
-            Lista com os nomes de cada membro (ex: ['ADMIN', 'CLIENTE'])
+            Lista com os nomes de cada membro (ex: ['ADMIN', 'autor'])
         """
         return [item.name for item in cls]
 

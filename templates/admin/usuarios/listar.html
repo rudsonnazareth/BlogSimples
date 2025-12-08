@@ -66,13 +66,13 @@
                         {% if admins %}
                         | Administradores: <strong class="text-danger">{{ admins|length }}</strong>
                         {% endif %}
-                        {% set vendedores = usuarios|selectattr('perfil', 'equalto', 'Vendedor')|list %}
-                        {% if vendedores %}
-                        | Vendedores: <strong class="text-warning">{{ vendedores|length }}</strong>
+                        {% set LEITORes = usuarios|selectattr('perfil', 'equalto', 'LEITOR')|list %}
+                        {% if LEITORes %}
+                        | LEITORes: <strong class="text-warning">{{ LEITORes|length }}</strong>
                         {% endif %}
-                        {% set clientes = usuarios|selectattr('perfil', 'equalto', 'Cliente')|list %}
-                        {% if clientes %}
-                        | Clientes: <strong class="text-info">{{ clientes|length }}</strong>
+                        {% set Autores = usuarios|selectattr('perfil', 'equalto', 'Autor')|list %}
+                        {% if Autores %}
+                        | Autores: <strong class="text-info">{{ Autores|length }}</strong>
                         {% endif %}
                     </small>
                 </div>

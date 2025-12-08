@@ -5,7 +5,7 @@ Decorator para aplicar rate limiting em rotas FastAPI de forma centralizada,
 eliminando código duplicado em múltiplas rotas.
 
 Este módulo fornece um decorator que:
-- Verifica automaticamente o rate limit baseado no IP do cliente
+- Verifica automaticamente o rate limit baseado no IP do autor
 - Exibe mensagem de erro padronizada quando o limite é excedido
 - Registra no log tentativas bloqueadas
 - Redireciona para URL especificada quando bloqueado
@@ -23,9 +23,9 @@ from util.logger_config import logger
 
 def obter_identificador_cliente(request: Request) -> str:
     """
-    Obtém identificador único do cliente para rate limiting.
+    Obtém identificador único do autor para rate limiting.
 
-    Tenta obter o IP real do cliente, considerando proxies reversos.
+    Tenta obter o IP real do autor, considerando proxies reversos.
     Ordem de prioridade:
     1. X-Forwarded-For (primeiro IP da lista)
     2. X-Real-IP
@@ -35,12 +35,12 @@ def obter_identificador_cliente(request: Request) -> str:
         request: Objeto Request do FastAPI
 
     Returns:
-        String com o IP do cliente
+        String com o IP do autor
     """
     # Verificar header X-Forwarded-For (comum em load balancers/proxies)
     forwarded_for = request.headers.get("X-Forwarded-For")
     if forwarded_for:
-        # Pegar o primeiro IP da lista (IP original do cliente)
+        # Pegar o primeiro IP da lista (IP original do autor)
         return forwarded_for.split(",")[0].strip()
 
     # Verificar header X-Real-IP (usado por alguns proxies)
@@ -65,7 +65,7 @@ def aplicar_rate_limit(
     """
     Decorator para aplicar rate limiting em rotas FastAPI.
 
-    Este decorator verifica se o cliente excedeu o limite de requisições
+    Este decorator verifica se o autor excedeu o limite de requisições
     e bloqueia automaticamente a requisição se necessário.
 
     Args:
@@ -93,7 +93,7 @@ def aplicar_rate_limit(
     def decorator(func: Callable) -> Callable:
         @wraps(func)
         async def wrapper(request: Request, *args, **kwargs):
-            # Obter identificador do cliente (IP)
+            # Obter identificador do autor (IP)
             ip = obter_identificador_cliente(request)
 
             # Verificar rate limit
