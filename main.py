@@ -30,7 +30,7 @@ from repo import (
     chamado_interacao_repo,
     indices_repo,
 )
-from repo import chat_sala_repo, chat_participante_repo, chat_mensagem_repo
+from repo import chat_sala_repo, chat_participante_repo, chat_mensagem_repo, categoria_repo
 
 # Rotas
 from routes.auth_routes import router as auth_router
@@ -82,6 +82,7 @@ TABELAS = [
     (chat_sala_repo, "chat_sala"),
     (chat_participante_repo, "chat_participante"),
     (chat_mensagem_repo, "chat_mensagem"),
+    (categoria_repo, "categoria"),
 ]
 
 # Criar tabelas do banco de dados
@@ -121,10 +122,11 @@ ROUTERS = [
     (admin_config_router, ["Admin - Configurações"], "admin de configurações"),
     (admin_backups_router, ["Admin - Backups"], "admin de backups"),
     (admin_chamados_router, ["Admin - Chamados"], "admin de chamados"),
+    (admin_categorias_router, ["Admin - Categorias"], "admin de categorias"),  # NOVO ROUTER
     (usuario_router, ["Usuário"], "usuário"),
     (chat_router, ["Chat"], "chat"),
-    (public_router, ["Público"], "público"),
-    (examples_router, ["Exemplos"], "exemplos"),
+    (public_router, ["Público"], "público"),  # Deve ficar por último
+    (examples_router, ["Exemplos"], "exemplos"),  # Deve ficar por último
 ]
 
 # Incluir routers
