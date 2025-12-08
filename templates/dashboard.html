@@ -39,6 +39,24 @@
 
     <!-- Configurações (apenas para admin) -->
     {% if usuario_logado and usuario_logado.perfil == 'Administrador' %}
+    
+    <!-- Card Categorias -->
+                <div class="col">
+                    <div class="card h-100 shadow-sm shadow-hover">
+                        <div class="card-body text-center">
+                            <div class="mb-3">
+                                <i class="bi bi-folder text-primary" style="font-size: 3rem;"></i>
+                            </div>
+                            <h5 class="card-title">Categorias</h5>
+                            <p class="card-text text-muted">
+                                Gerencie as categorias de artigos do blog
+                            </p>
+                            <a href="/admin/categorias/listar" class="btn btn-primary">
+                                <i class="bi bi-folder"></i> Acessar
+                            </a>
+                        </div>
+                    </div>
+                </div>
     <!-- Usuários -->
     <div class="col">
         <div class="card h-100 shadow-sm shadow-hover">
