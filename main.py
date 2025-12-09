@@ -30,7 +30,7 @@ from repo import (
     chamado_interacao_repo,
     indices_repo,
 )
-from repo import chat_sala_repo, chat_participante_repo, chat_mensagem_repo, categoria_repo
+from repo import chat_sala_repo, chat_participante_repo, chat_mensagem_repo, categoria_repo, artigo_repo
 
 # Rotas
 from routes.auth_routes import router as auth_router
@@ -38,6 +38,7 @@ from routes.chamados_routes import router as chamados_router
 from routes.admin_usuarios_routes import router as admin_usuarios_router
 from routes.admin_configuracoes_routes import router as admin_config_router
 from routes.admin_backups_routes import router as admin_backups_router
+from routes.artigos_routes import router as artigos_router
 from routes.admin_chamados_routes import router as admin_chamados_router
 from routes.usuario_routes import router as usuario_router
 from routes.chat_routes import router as chat_router
@@ -83,6 +84,7 @@ TABELAS = [
     (chat_participante_repo, "chat_participante"),
     (chat_mensagem_repo, "chat_mensagem"),
     (categoria_repo, "categoria"),
+    (artigo_repo, "artigo"),
 ]
 
 # Criar tabelas do banco de dados
@@ -122,7 +124,8 @@ ROUTERS = [
     (admin_config_router, ["Admin - Configurações"], "admin de configurações"),
     (admin_backups_router, ["Admin - Backups"], "admin de backups"),
     (admin_chamados_router, ["Admin - Chamados"], "admin de chamados"),
-    (admin_categorias_router, ["Admin - Categorias"], "admin de categorias"),  # NOVO ROUTER
+    (admin_categorias_router, ["Admin - Categorias"], "admin de categorias"),
+    (artigos_router, ["Artigos"], "artigos"),  # NOVO ROUTER
     (usuario_router, ["Usuário"], "usuário"),
     (chat_router, ["Chat"], "chat"),
     (public_router, ["Público"], "público"),  # Deve ficar por último
