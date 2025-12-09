@@ -121,7 +121,14 @@
     {% if request.session.get('usuario_logado') %}
     {% include 'components/chat_widget.html' %}
     {% endif %}
-
+    
+     {% if usuario_logado and usuario_logado.perfil == 'Autor' %}
+                    <li class="nav-item">
+                        <a class="nav-link {{ 'active' if '/artigos/meus' in request.path else '' }}"
+                            href="/artigos/meus"
+                            {{ 'aria-current=page' if '/artigos/meus' in request.path else '' }}>Meus Artigos</a>
+                    </li>
+                    {% endif %}
     <!-- Footer -->
     <footer class="bg-light text-center text-muted py-3 mt-auto">
         <div class="container">
