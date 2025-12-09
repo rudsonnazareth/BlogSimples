@@ -44,6 +44,8 @@ from routes.usuario_routes import router as usuario_router
 from routes.chat_routes import router as chat_router
 from routes.public_routes import router as public_router
 from routes.examples_routes import router as examples_router
+from routes.admin_categorias_router import admin_categorias_router
+
 
 # Seeds
 from util.seed_data import inicializar_dados
